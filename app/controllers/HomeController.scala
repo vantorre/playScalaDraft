@@ -22,4 +22,9 @@ class HomeController @Inject()(cc: ControllerComponents) (implicit assetsFinder:
     Ok(views.html.index("Your new application is ready."))
   }
 
+  def myown = Action {
+    Ok(views.html.myown("Mon message"))
+  }
+
+
 }

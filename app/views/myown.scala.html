@@ -1,0 +1,15 @@
+@(message: String, style: String = "scala")( implicit assetsFinder: AssetsFinder)
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MYOWN</title>
+        <link rel="stylesheet" media="screen" href="@assetsFinder.path("stylesheets/myown.css")">
+    </head>
+    <body>
+        <div class="red">@message</div>
+    </body>
+</html>
