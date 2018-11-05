@@ -13,3 +13,6 @@ GET     /message                    controllers.AsyncController.message
 GET     /assets/*file               controllers.Assets.versioned(file)
 
 GET     /myown                      controllers.HomeController.myown
+
+GET     /myownPage                      controllers.MyOwnController.myownPage
+GET     /myownData                      controllers.MyOwnController.myownData
