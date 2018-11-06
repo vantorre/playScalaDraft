@@ -18,5 +18,9 @@ class MyOwnController @Inject()(cc: ControllerComponents) (implicit assetsFinder
     Ok("5")
   }
 
+  def myownScript = Action {
+    Ok(views.js.myown())
+  }
+
 
 }
