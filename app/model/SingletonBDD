@@ -1,0 +1,5 @@
+package model
+@Singleton
+class SingletonBDD{
+  var products = List(new Product("produit1", 11),new Produit("produit2", 22))
+}

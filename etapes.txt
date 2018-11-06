@@ -1,0 +1,14 @@
+les etapes : 
+
+On macOS or Linux systems: ./sbt run or ./gradlew runPlayBinary
+
+On Windows systems: sbt.bat run or gradlew.bat runPlayBinary
+
+Ajouter le plugin: intelj => scala plugin  => setup Scala sdk
+		   eclipse: https://github.com/sbt/sbteclipse   https://www.playframework.com/documentation/2.6.19/IDE
+
+
+Regarder : https://www.playframework.com/documentation/2.6.19/ScalaTemplates
+
+Scala: scalibal language
+SBT: Scala Build Tool
