@@ -14,8 +14,8 @@ GET     /assets/*file               controllers.Assets.versioned(file)
 
 GET     /myown                      controllers.HomeController.myown
 
-GET     /myownPage                      controllers.MyOwnController.myownPage
-GET     /myownData                      controllers.MyOwnController.myownData
-GET    /myown.scala.js    controllers.MyOwnController.myownScript
+GET     /myownPage                  controllers.MyOwnController.myownPage
+GET     /myownData                  controllers.MyOwnController.myownData
+GET    /myown.scala.js              controllers.MyOwnController.myownScript
 
-GET     /produit                        controllers.ProductController.all
+GET     /produit                    controllers.ProductController.all
