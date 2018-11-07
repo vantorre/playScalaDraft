@@ -1,5 +1,5 @@
 
-@(product: model.Product)
+@(products: List[model.Product])
 
 <html>
 <head>
@@ -8,10 +8,21 @@
 </head>
     <h1>Produit</h1>
     <div>
-        <p>name: @product.name =>  prix: @product.prix</p>
+        <p>name: @products</p>
 
     </div>
     <table id="produits">
-
+        <thead>
+            <th>Name</th>
+            <th>Price</th>
+        </thead>
+        <tbody>
+        @for(value <- products){
+            <tr>
+                <td>@value.name </td>
+                <td>@value.prix </td>
+            </tr>
+        }
+        </tbody>
     </table>
 </html>

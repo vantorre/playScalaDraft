@@ -12,3 +12,6 @@ Regarder : https://www.playframework.com/documentation/2.6.19/ScalaTemplates
 
 Scala: scalibal language
 SBT: Scala Build Tool
+
+Ajouter dans la doc, comment installer sbt
+ressemblance avec Haskell, java
