@@ -40,6 +40,10 @@ class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSyst
     getFutureMessage(10.second).map { msg => Ok(msg + "----" + Calendar.getInstance.getTime) }
   }
 
+  def testPerf = Action {
+    Ok(views.html.TestPerf())
+  }
+
   private def getFutureMessage(delayTime: FiniteDuration): Future[String] = {
     val promise: Promise[String] = Promise[String]()
     actorSystem.scheduler.scheduleOnce(delayTime) {

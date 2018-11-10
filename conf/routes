@@ -24,3 +24,4 @@ GET     /myOwnAsync                  controllers.MyOwnAsyncController.message
 
 
 GET     /produit                    controllers.ProductController.all
+GET     /testPerf                   controllers.AsyncController.testPerf
