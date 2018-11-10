@@ -16,17 +16,19 @@ import akka.actor._
 import akka.util.Timeout
 
 
-@Singleton
+
 class MyOwnAsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc) {
   implicit val timeout: Timeout = 10 seconds
+  //    bug lors d appel multiples a cause du nom de l acteur qui doit etre unique
+  val ressourceActor1 = actorSystem.actorOf(Props[BlockingExternalRessource1], "res1Actor")
+  val ressourceActor2 = actorSystem.actorOf(Props[BlockingExternalRessource2], "res2Actor")
+  implicit val ec = actorSystem.dispatchers.lookup("myown-context")
 
   def message = Action.async {
+    println(s"MyOwnAsyncController catch request")
     val start = System.currentTimeMillis()
     def getLatency(m: String): String = m + "=" + (System.currentTimeMillis() - start) + "ms"
 
-    //    bug lors d appel multiples a cause du nom de l acteur qui doit etre unique
-    val ressourceActor1 = actorSystem.actorOf(Props[BlockingExternalRessource1], "res1Actor")
-    val ressourceActor2 = actorSystem.actorOf(Props[BlockingExternalRessource2], "res2Actor")
 
 
     val r1 = (ressourceActor1 ? 1).mapTo[String].map(getLatency)
@@ -34,6 +36,7 @@ class MyOwnAsyncController @Inject()(cc: ControllerComponents, actorSystem: Acto
 
     r1.flatMap { r1Response: String =>
       r2.map { r2Response: String =>
+        println(s"MyOwnAsyncController response request")
         Ok(r1Response + "/" + r2Response)
       }
     }
