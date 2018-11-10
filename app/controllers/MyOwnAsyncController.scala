@@ -8,20 +8,25 @@ import play.api.mvc._
 import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future, Promise}
 
+import externalRessourcesMocks.BlockingExternalRessource1
+
+import akka.pattern.ask
+import akka.actor._
+import akka.util.Timeout
+
+
+
 
 @Singleton
 class MyOwnAsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc) {
+  implicit val timeout: Timeout = 10 seconds
 
   def message = Action.async {
-    getFutureMessage(1.second).map { msg => Ok(msg) }
+    val ressourceActor = actorSystem.actorOf(Props[BlockingExternalRessource1], "res1Actor")
+    (ressourceActor ? 1).mapTo[String].map { message =>
+      Ok(message)
+    }
   }
 
-  private def getFutureMessage(delayTime: FiniteDuration): Future[String] = {
-    val promise: Promise[String] = Promise[String]()
-    actorSystem.scheduler.scheduleOnce(delayTime) {
-      promise.success("Async")
-    }(actorSystem.dispatcher) // run scheduled tasks using the actor system's dispatcher
-    promise.future
-  }
 
 }
