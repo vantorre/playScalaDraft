@@ -8,6 +8,8 @@ import play.api.mvc._
 import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future, Promise}
 
+import java.util.Calendar
+
 /**
  * This controller creates an `Action` that demonstrates how to write
  * simple asynchronous code in a controller. It uses a timer to
@@ -35,7 +37,7 @@ class AsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSyst
    * a path of `/message`.
    */
   def message = Action.async {
-    getFutureMessage(1.second).map { msg => Ok(msg) }
+    getFutureMessage(10.second).map { msg => Ok(msg + "----" + Calendar.getInstance.getTime) }
   }
 
   private def getFutureMessage(delayTime: FiniteDuration): Future[String] = {
