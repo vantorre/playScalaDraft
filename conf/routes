@@ -21,6 +21,8 @@ GET    /myown.scala.js              controllers.MyOwnController.myownScript
 
 # MyOwnAsync
 GET     /myOwnAsync                  controllers.MyOwnAsyncController.message
+# MyOwnSync
+GET     /myOwnSync                  controllers.MyOwnSyncController.message
 
 
 GET     /produit                    controllers.ProductController.all

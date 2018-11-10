@@ -18,7 +18,7 @@ import akka.util.Timeout
 
 
 class MyOwnAsyncController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc) {
-  implicit val timeout: Timeout = 10 seconds
+  implicit val timeout: Timeout = 20 seconds
   //    bug lors d appel multiples a cause du nom de l acteur qui doit etre unique
   val ressourceActor1 = actorSystem.actorOf(Props(new BlockingExternalRessource1(actorSystem)), "res1Actor")
   val ressourceActor2 = actorSystem.actorOf(Props(new BlockingExternalRessource2(actorSystem)), "res2Actor")
