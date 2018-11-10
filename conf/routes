@@ -18,4 +18,9 @@ GET     /myownPage                  controllers.MyOwnController.myownPage
 GET     /myownData                  controllers.MyOwnController.myownData
 GET    /myown.scala.js              controllers.MyOwnController.myownScript
 
+
+# MyOwnAsync
+GET     /myOwnAsync                  controllers.MyOwnAsyncController.message
+
+
 GET     /produit                    controllers.ProductController.all
